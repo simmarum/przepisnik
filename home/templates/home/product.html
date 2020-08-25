@@ -16,8 +16,25 @@
             <p>
                 {{ page.short_description|linebreaks  }}
             </p>
-
             <p>
+                <span class="sect_bold">Składniki:</span>
+            <ul>
+                {% for ingredient in page.get_content_ingredients_as_list %}
+                <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+            </p>
+            <p>
+                <span class="sect_bold">Przepis:</span>
+                {{ page.content_recipe|linebreaks }}
+            </p>
+            <p>
+                <span class="sect_bold">Dodatkowe rzeczy:</span>
+                {{ page.content_additional }}
+            </p>
+
+            <!-- We can use it to extract data from content - to show proper things -->
+            <!-- <p>
                 {% for f in custom_fields %}
                 {% if f.options_array|length > 0 %}
             <div class="form-group">
@@ -35,60 +52,10 @@
             </div>
             {% endif %}
             {% endfor %}
-            </p>
-            <p>
-                Price: {{ page.price }}
-            </p>
-            <p id='n_a'>
-            </p>
-            <p id='n'>
-                Negotiation discount code:
-            </p>
-            <button class="snipcart-add-item btn btn-primary" data-item-name="{{ page.title }}"
-                data-item-id="{{ page.sku }}" data-item-url="{{ relative_url }}" data-item-price="{{ page.price }}"
-                data-item-description="{{ page.short_description}}" data-item-image="{{ temp_image.url }}"
-                {% for f in custom_fields %} data-item-custom{{forloop.counter}}-name="{{f.name}}"
-                data-item-custom{{forloop.counter}}-options="{{f.options}}" {% endfor %}>
-                <i class="icon icon-plus"></i>
-                Add to cart
-            </button>
-            <button class="btn btn-secondary" id="n_b" onclick="negotiation_price()">
-                Found promo code
-            </button>
+            </p> -->
         </div>
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('.custom-field-select').onchange = function (event) {
-            if (event.target.dataset.field) {
-                document.querySelector('.snipcart-add-item')
-                    .dataset['itemCustom' + event.target.dataset.field + 'Value'] = event.target.value;
-            }
-        };
-    }, false);
-
-    var _num_disc_to_use = 5;
-    var _num_disc_use = 0;
-    var _a_ = ['MSJDESC', 'SCEWCSX', 'CSACXASWQW']
-    document.getElementById('n_a').innerText = "Negotiation discount code attempts: " + _num_disc_to_use
-    function negotiation_price() {
-        if ((_num_disc_to_use > 0) && (_num_disc_use < _a_.length)) {
-            _num_disc_to_use = _num_disc_to_use - 1
-            document.getElementById('n_a').innerText = "Negotiation discount code attempts: " + _num_disc_to_use
-            var will_down = (_num_disc_to_use + 1) / 7;
-            var los = Math.random();
-            if (Math.random() < will_down) {
-                document.getElementById('n').innerText = "Negotiation discount code: " + _a_[_num_disc_use]
-                _num_disc_use = _num_disc_use + 1;
-            }
-            console.log("will_down", will_down)
-            console.log("los", los)
-            if (_num_disc_to_use == 0) {
-                document.getElementById('n_b').disabled = true;
-            }
-        }
-    }
-
 </script>
 {% endblock %}

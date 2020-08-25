@@ -19,5 +19,13 @@ git push heroku:master -f
 To run dockerfile
 ```
 docker build -t "webdev:Dockerfile" .
-docker run webdev:Dockerfile
+docker run -p 8000:8000 webdev:Dockerfile
+```
+To develop
+```
+. ./venv/bin/activate
+# or source ./venv/bin/activate
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
 ```

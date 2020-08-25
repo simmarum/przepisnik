@@ -21,9 +21,7 @@ class HomePage(Page):
 
 class Product(Page):
     sku = models.CharField(max_length=255)
-    short_description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
-    price_disc = models.TextField(blank=True, null=True)
+    short_description = models.TextField(blank=True, null=False)
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -31,48 +29,26 @@ class Product(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    content_ingredients = models.TextField(blank=True, null=False)
+    content_recipe = models.TextField(blank=True, null=False)
+    content_additional = models.TextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('sku'),
-        FieldPanel('price'),
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
-        InlinePanel('custom_fields', label='Custom fields'),
+        FieldPanel('content_ingredients'),
+        FieldPanel('content_recipe'),
+        FieldPanel('content_additional'),
     ]
+
+    def get_content_ingredients_as_list(self):
+        return self.content_ingredients.split('\n')
 
     def get_context(self, request):
         context = super().get_context(request)
-        fields = []
-        for f in self.custom_fields.get_object_list():
-            if f.options:
-                f.options_array = f.options.split('|')
-                fields.append(f)
-            else:
-                fields.append(f)
-
-        context['custom_fields'] = fields
         context['relative_url'] = urllib.parse.urlparse(
             self.get_full_url()).path
         print(self.get_full_url())
         print(context['relative_url'])
         return context
-
-
-class ProductCustomField(Orderable):
-    product = ParentalKey(Product, on_delete=models.CASCADE,
-                          related_name='custom_fields')
-    name = models.CharField(max_length=255)
-    options = models.CharField(max_length=500, null=True, blank=True)
-
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('options')
-    ]
-
-
-@register_setting
-class SnipcartSettings(BaseSetting):
-    api_key = models.CharField(
-        max_length=255,
-        help_text='Your Snipcart public API key'
-    )
