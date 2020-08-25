@@ -29,3 +29,7 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
+Configure heroku
+- https://devcenter.heroku.com/articles/heroku-cli
+- https://github.com/heroku/heroku-repo#reset
+- https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main
