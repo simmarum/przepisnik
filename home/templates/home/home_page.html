@@ -12,27 +12,32 @@
     Witaj w naszym przepiśniku!
 </h1>
 
-<div class="columns">
+<div class="row">
     {% for product in products %}
-    <div class="column col-6">
+    <div class="col">
         <div class="card">
             <div class="card-image">
                 {% image product.image fill-1000x200 as tmp_image %}
                 <img src="{{ tmp_image.url }}" alt="" class="img-responsive">
             </div>
             <div class="card-header">
-                <a href="{{ product.get_url }}" class="btn btn-primary float-right">
-                    <i class="icon icon-plus"></i>
+                <a href="{{ product.get_url }}" class=" float-right">
+                    <i class="icon icon-forward"></i>
                 </a>
                 <div class="card-title h5">
                     {{ product.title }}
                 </div>
             </div>
             <div class="card-body">
-                {{ product.description }}
+                {{ product.short_description }}
             </div>
         </div>
     </div>
+    {% if forloop.counter|divisibleby:3 %}
+    <div class="w-100 hidden-md-down">
+        <!--force wrap every 5 on lg-->
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock content %}

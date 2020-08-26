@@ -16,13 +16,15 @@
         {% endblock %}
     </title>
     <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {# Global stylesheets #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/przepisnik.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     {% block extra_css %}
     {# Override this in templates to add extra stylesheets #}
@@ -34,7 +36,6 @@
 
     <div class="container grid-lg">
         <header class="navbar">
-
             <section class="navbar-section">
                 <a href="/" class="navbar-brand mr-2">
                     Przepisy
