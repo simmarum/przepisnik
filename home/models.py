@@ -2,20 +2,38 @@ import urllib.parse
 
 from django.db import models
 
-from modelcluster.fields import ParentalKey
-
-from wagtail.core.models import Page, Orderable
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.core.models import Page
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.search.models import Query
+from wagtail.search import index
 
 import ast
+
 
 class HomePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
 
-        context['products'] = Product.objects.child_of(self).live()
+        categories = set()
+        for product in Product.objects.child_of(self).live():
+            categories.add(product.category)
+        categories = list(categories)
+        categories.sort()
+        context['categories'] = categories
+
+        search_query = request.GET.get('query', None)
+        if search_query:
+            search_results = Product.objects.child_of(self).live().search(
+                search_query,
+                fields=["title", "category"]
+            )
+            # Log the query so Wagtail can suggest promoted results
+            Query.get(search_query).add_hit()
+        else:
+            search_results = Product.objects.child_of(self).live()
+
+        context['products'] = search_results
 
         return context
 
@@ -43,6 +61,14 @@ class Product(Page):
         FieldPanel('content_ingredients'),
         FieldPanel('content_recipe'),
         FieldPanel('content_additional'),
+    ]
+
+    search_fields = [
+        index.SearchField('title'),
+        index.SearchField('category'),
+        index.FilterField('path'),
+        index.FilterField('depth'),
+        index.FilterField('live')
     ]
 
     def get_content_ingredients_as_list(self):

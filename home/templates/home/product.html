@@ -37,7 +37,7 @@
                 {% if one_piece.name == 'timer' %}
                 <p><input type="checkbox"> Minutnik: {{ one_piece.value }} sekund.
                     <button class="btn btn-action s-circle" id="btn_timer_{{ forloop.counter }}"><i
-                            class="icon icon-time">Start</i></button>
+                            class="icon icon-time"></i></button>
                     <span class="timer" id="timer_{{ forloop.counter }}" value="{{ one_piece.value }}"></span>
                 </p>
                 {% endif %}
