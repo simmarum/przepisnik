@@ -1,9 +1,11 @@
 To run application
 ```
+python -m venv venv
+. ./venv/bin/activate
 pip install -r requirements.txt
-python manage.py migrate
-python manage.py createsuperuser # only one time
-python manage.py runserver
+./manage.py migrate
+./manage.py createsuperuser # only one time
+./manage.py runserver
 ```
 
 To run heroku
@@ -23,13 +25,20 @@ docker run -p 8000:8000 webdev:Dockerfile
 ```
 To develop
 ```
+python -m venv venv
 . ./venv/bin/activate
 # or source ./venv/bin/activate
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
+./manage.py makemigrations
+./manage.py migrate
+./manage.py runserver
 ```
 Configure heroku
 - https://devcenter.heroku.com/articles/heroku-cli
 - https://github.com/heroku/heroku-repo#reset
 - https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main
+Create translation
+```
+./manage.py makemessages -l pl -i "venv*"
+# add translation in "locale/pl/LC_MESSAGES/django.po" file
+./manage.py compilemessages -i "venv*"
+```

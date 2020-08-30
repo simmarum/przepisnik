@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
+{% load i18n %}
+
 
 {% block content %}
 <div class="container grid-lg">
@@ -13,13 +15,13 @@
                 {{ page.title }}
             </h1>
             <h5>
-                Kategoria: {{ page.category }}
+                {% trans "Category" %}: {{ page.category }}
             </h5>
             <p>
                 {{ page.short_description|linebreaks  }}
             </p>
             <p>
-                <span class="sect_bold">Składniki:</span>
+                <span class="sect_bold">{% trans "Ingredients" %}:</span>
             <div>
                 {% for ingredient in page.get_content_ingredients_as_list %}
                 <input type="checkbox"> {{ ingredient }} </br>
@@ -27,15 +29,15 @@
             </div>
             </p>
             <p>
-                <span class="sect_bold">Przepis:</span>
+                <span class="sect_bold">{% trans "Recipe" %}:</span>
                 {{ page.content_recipe|linebreaks }}
             </p>
             <p>
-                <span class="sect_bold">Krok po kroku:</span>
+                <span class="sect_bold">{% trans "Step by step" %}:</span>
             <div>
                 {% for one_piece in page.get_content_additional_as_dict %}
                 {% if one_piece.name == 'timer' %}
-                <p><input type="checkbox"> Minutnik: {{ one_piece.value }} sekund.
+                <p><input type="checkbox">{% trans "Timer" %}: {{ one_piece.value }} {% trans "seconds" %}.
                     <button class="btn btn-action s-circle" id="btn_timer_{{ forloop.counter }}"><i
                             class="icon icon-time"></i></button>
                     <span class="timer" id="timer_{{ forloop.counter }}" value="{{ one_piece.value }}"></span>

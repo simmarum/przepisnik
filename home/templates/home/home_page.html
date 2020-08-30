@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 {% load static %}
+{% load i18n %}
+
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -9,7 +11,7 @@
 
 {% block content %}
 <h1>
-    Witaj w naszym przepiśniku!
+    {% trans "Welcome in our Przepiśnik!" %}
 </h1>
 <div class="container grid-lg m-2">
     <div class="columns text-left category_no_wrap">
@@ -21,9 +23,10 @@
 </div>
 <div class="container grid-lg m-2">
     <form class="columns" method="get">
-        <input class="column col-8 col-xs-12" type="text" name="query" placeholder="Wyszukaj po tytule lub kategorii"
-            value="{{ search_query }}">
-        <input class="column col-4 col-xs-12 btn btn-primary input-group-btn" type="submit" value="Search">
+        <input class="column col-8 col-xs-12" type="text" name="query"
+            placeholder="{% trans 'Search by title and category' %}" value="{{ search_query }}">
+        <input class="column col-4 col-xs-12 btn btn-primary input-group-btn" type="submit"
+            value="{% trans 'Search' %}">
     </form>
 </div>
 
