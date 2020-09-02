@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-02 17:00+0000\n"
+"POT-Creation-Date: 2020-09-02 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,6 +61,14 @@ msgstr "Minutnik"
 #: home/templates/home/product.html:50
 msgid "seconds"
 msgstr "sekund"
+
+#: home/templates/home/product.html:63
+msgid "Rate product"
+msgstr "Oceń product"
+
+#: home/templates/home/product.html:65
+msgid "Rate difficulty level:"
+msgstr "Oceń poziom trudności:"
 
 #: home/templates/home/welcome_page.html:8
 msgid "Visit the Wagtail website"

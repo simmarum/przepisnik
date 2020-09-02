@@ -5,12 +5,12 @@
 
 {% block content %}
 <div class="container grid-lg">
-    <div class="row">
-        <div class="col-12">
+    <div class="columns">
+        <div class="column col-12">
             {% image page.image max-500x500 as temp_image %}
             <img src="{{ temp_image.url }}" alt="" class="img-responsive" />
         </div>
-        <div class="col">
+        <div class="column col-12">
             <h1>
                 {{ page.title }}
             </h1>
@@ -56,6 +56,16 @@
                 {% if one_piece.name == 'opis' %}
                 <p><input type="checkbox"> {{ one_piece.value }} </p>
                 {% endif %}
+                {% endfor %}
+            </div>
+            </p>
+            <p>
+                <span class="sect_bold">{% trans "Rate product" %}:</span>
+            <div id="rate_star">
+                {% trans "Rate difficulty level:" %}
+                {% for is_star in page.get_content_star_rating %}
+                <span id="rate_star_{{ forloop.counter }}" class="fa fa-star"
+                    onclick="SendRateProduct({{ forloop.counter }},'{{ page.page_ptr_id }}')"></span>
                 {% endfor %}
             </div>
             </p>

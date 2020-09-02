@@ -10,4 +10,13 @@
 
 .checked {
     color: #504eb8;
-  }
+}
+
+
+#rate_star:hover > span:before {
+    color: #504eb8;
+}
+
+#rate_star > span:hover ~ span:before {
+    color: #ffffff;
+}

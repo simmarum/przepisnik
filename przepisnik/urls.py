@@ -8,6 +8,8 @@ from django.contrib import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from django.urls import path
+from django.views.i18n import JavaScriptCatalog
 
 from search import views as search_views
 
@@ -26,6 +28,12 @@ urlpatterns = [
     *i18n_patterns(url(r'^search/$', search_views.search, name='search')),
 
     *i18n_patterns(url(r'^contact/', views.contact,  name='contact_us')),
+    *i18n_patterns(url(r'^rate/', views.rate_product,  name='rate_product')),
+
+    *i18n_patterns(
+        url('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    )
+
 ]
 
 

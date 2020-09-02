@@ -38,8 +38,10 @@ Configure heroku
 - https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main
 Create translation
 ```
-./manage.py makemessages -l pl -i "venv*"
+./manage.py makemessages -l pl -i "venv*" -d djangojs
 find ./ -name django.po | grep -v venv
+find ./ -name djangojs.po | grep -v venv
 # add translation in "locale/pl/LC_MESSAGES/django.po" file
+# add translation in "locale/pl/LC_MESSAGES/djangojs.po" file
 ./manage.py compilemessages -i "venv*"
 ```

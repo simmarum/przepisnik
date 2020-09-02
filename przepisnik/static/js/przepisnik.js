@@ -49,3 +49,13 @@ CountDownTimer.parse = function (seconds) {
         'seconds': (seconds % 60) | 0
     };
 };
+
+function SendRateProduct(rate, page_ptr_id) {
+    console.log("@", rate, page_ptr_id);
+    tmp_span = document.createElement('div');
+    tmp_span.innerHTML = gettext("You rated the product with a %1 grade.").replace('%1', rate);
+    tmp_rate = document.getElementById("rate_star");
+    tmp_rate.replaceWith(tmp_span);
+    // TODO log it to database
+    // TODO update actual rate in product
+}

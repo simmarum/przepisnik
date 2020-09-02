@@ -1,6 +1,8 @@
 from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.template.loader import get_template
+from rest_framework.decorators import api_view
+from django.shortcuts import redirect
 
 from .forms import ContactForm
 
@@ -43,3 +45,8 @@ def contact(request):
     return render(request, 'contact.html', {
         'form': form_class,
     })
+
+
+def rate_product(request):
+    print("!", request)
+    return redirect('/')
