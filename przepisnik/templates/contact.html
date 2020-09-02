@@ -5,21 +5,13 @@
 
 {% block content %}
 <div class="container pt-5">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="columns">
+        <div class="column col-12">
             <h5>{% trans "Contact" %}</h5>
         </div>
     </div>
-    <!--<div class="row">
-    <div class="col-md-2">
-        <h5>Tel:</h5>
-    </div>
-    <div class="col-md-3">
-        <h5>796845258</h5>
-    </div>
-</div>-->
-    <div class="row">
-        <div class="col-md-12">
+    <div class="columns">
+        <div class="column col-12">
             <form class="form-group" role="form" action="" method="post">
                 {% csrf_token %}
                 {% load crispy_forms_tags %}
