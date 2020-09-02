@@ -18,6 +18,16 @@
                 {% trans "Category" %}: {{ page.category }}
             </h5>
             <p>
+                {% trans "Difficulty level:" %}
+                {% for is_star in page.get_content_star_rating %}
+                {% if is_star == 1 %}
+                <span class="fa fa-star checked"></span>
+                {% else %}
+                <span class="fa fa-star-o"></span>
+                {% endif %}
+                {% endfor %}
+            </p>
+            <p>
                 {{ page.short_description|linebreaks  }}
             </p>
             <p>

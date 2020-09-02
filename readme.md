@@ -39,6 +39,7 @@ Configure heroku
 Create translation
 ```
 ./manage.py makemessages -l pl -i "venv*"
+find ./ -name django.po | grep -v venv
 # add translation in "locale/pl/LC_MESSAGES/django.po" file
 ./manage.py compilemessages -i "venv*"
 ```

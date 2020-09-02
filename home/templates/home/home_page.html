@@ -13,7 +13,7 @@
 <h1>
     {% trans "Welcome in our Przepiśnik!" %}
 </h1>
-<div class="container grid-lg m-2">
+<div class="container ">
     <div class="columns text-left category_no_wrap">
         {% for category in categories %}
         <div class="column col-3 col-xs-12"><a href="?query={{category}}">{{category}}<i
@@ -21,7 +21,7 @@
         {% endfor %}
     </div>
 </div>
-<div class="container grid-lg m-2">
+<div class="container ">
     <form class="columns" method="get">
         <input class="column col-8 col-xs-12" type="text" name="query"
             placeholder="{% trans 'Search by title and category' %}" value="{{ search_query }}">
@@ -48,6 +48,16 @@
                     <div class="card-title h5">
                         {{ product.title }}
                     </div>
+                </div>
+                <div class="card-body">
+                    {% trans "Difficulty level:" %}
+                    {% for is_star in product.get_content_star_rating %}
+                    {% if is_star == 1 %}
+                    <span class="fa fa-star checked"></span>
+                    {% else %}
+                    <span class="fa fa-star-o"></span>
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="card-body">
                     {{ product.short_description }}

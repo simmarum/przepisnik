@@ -49,6 +49,7 @@ class Product(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    difficult_level = models.FloatField(blank=False, null=False)
     content_ingredients = models.TextField(blank=True, null=False)
     content_recipe = models.TextField(blank=True, null=False)
     content_additional = models.TextField(blank=True, null=True)
@@ -56,6 +57,7 @@ class Product(Page):
     content_panels = Page.content_panels + [
         FieldPanel('sku'),
         FieldPanel('category'),
+        FieldPanel('difficult_level'),
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
         FieldPanel('content_ingredients'),
@@ -73,6 +75,12 @@ class Product(Page):
 
     def get_content_ingredients_as_list(self):
         return self.content_ingredients.split('\n')
+
+    def get_content_star_rating(self):
+        star_rating = [0]*5
+        for number in range(round(self.difficult_level)):
+            star_rating[number] = 1
+        return star_rating
 
     def get_content_additional_as_dict(self):
         """

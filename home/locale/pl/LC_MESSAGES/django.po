@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-30 08:09+0000\n"
+"POT-Creation-Date: 2020-09-02 17:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,27 +34,31 @@ msgstr "Szukaj po tytule i kategorii"
 msgid "Search"
 msgstr "Szukaj"
 
+#: home/templates/home/home_page.html:53 home/templates/home/product.html:21
+msgid "Difficulty level:"
+msgstr "Poziom trudności:"
+
 #: home/templates/home/product.html:18
 msgid "Category"
 msgstr "Kategoria"
 
-#: home/templates/home/product.html:24
+#: home/templates/home/product.html:34
 msgid "Ingredients"
 msgstr "Składniki"
 
-#: home/templates/home/product.html:32
+#: home/templates/home/product.html:42
 msgid "Recipe"
 msgstr "Przepis"
 
-#: home/templates/home/product.html:36
+#: home/templates/home/product.html:46
 msgid "Step by step"
 msgstr "Krok po kroku"
 
-#: home/templates/home/product.html:40
+#: home/templates/home/product.html:50
 msgid "Timer"
 msgstr "Minutnik"
 
-#: home/templates/home/product.html:40
+#: home/templates/home/product.html:50
 msgid "seconds"
 msgstr "sekund"
 
