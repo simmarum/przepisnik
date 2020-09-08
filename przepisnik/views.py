@@ -6,6 +6,12 @@ from django.shortcuts import redirect
 
 from .forms import ContactForm
 
+from home.models import RateProduct
+from home.models import Product
+from django.db.models import Avg
+
+from wagtail.core.models import Page
+
 
 def contact(request):
     form_class = ContactForm
@@ -48,5 +54,25 @@ def contact(request):
 
 
 def rate_product(request):
-    print("!", request)
-    return redirect('/')
+    if request.method == 'POST':
+        product_id = request.POST.get('page_ptr_id')
+        product_new_rate = request.POST.get('rate')
+        try:
+            product_id = int(product_id)
+            product_new_rate = int(product_new_rate)
+        except ValueError:
+            return redirect(request.META['HTTP_REFERER'])
+
+        new_rate_product = RateProduct(
+            product_id=Page.objects.get(id=product_id),
+            product_rate=product_new_rate
+        )
+        new_rate_product.save()
+        new_avg_rate = RateProduct.objects.filter(
+            product_id=product_id).aggregate(Avg('product_rate'))['product_rate__avg']
+        updated_product = Product.objects.get(page_ptr_id=product_id)
+        updated_product.difficult_level = new_avg_rate
+        updated_product.save()
+        return redirect(request.META['HTTP_REFERER'])
+    else:
+        return redirect('/')

@@ -50,12 +50,36 @@ CountDownTimer.parse = function (seconds) {
     };
 };
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 function SendRateProduct(rate, page_ptr_id) {
-    console.log("@", rate, page_ptr_id);
     tmp_span = document.createElement('div');
     tmp_span.innerHTML = gettext("You rated the product with a %1 grade.").replace('%1', rate);
     tmp_rate = document.getElementById("rate_star");
     tmp_rate.replaceWith(tmp_span);
-    // TODO log it to database
-    // TODO update actual rate in product
+
+    var csrftoken = getCookie('csrftoken');
+
+    const url_rate = "/rate/";
+    const data_rate = {
+        'page_ptr_id': page_ptr_id,
+        'rate': rate,
+        'csrfmiddlewaretoken': csrftoken
+    };
+    $.post(url_rate, data_rate, function (data, status) {
+    })
 }

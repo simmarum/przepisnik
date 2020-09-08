@@ -115,3 +115,15 @@ class Product(Page):
         print(self.get_full_url())
         print(context['relative_url'])
         return context
+
+
+class RateProduct(models.Model):
+    product_id = models.ForeignKey(
+        'wagtailcore.Page',
+        on_delete=models.PROTECT,
+        related_name='+'
+    )
+    product_rate = models.IntegerField(
+        null=False,
+        blank=False
+    )

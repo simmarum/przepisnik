@@ -28,7 +28,7 @@ urlpatterns = [
     *i18n_patterns(url(r'^search/$', search_views.search, name='search')),
 
     *i18n_patterns(url(r'^contact/', views.contact,  name='contact_us')),
-    *i18n_patterns(url(r'^rate/', views.rate_product,  name='rate_product')),
+    url(r'^rate/', views.rate_product,  name='rate_product'),
 
     *i18n_patterns(
         url('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
