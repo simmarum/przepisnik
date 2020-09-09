@@ -91,14 +91,14 @@ class Product(Page):
                     'value': 10, # in seconds
                 },
                 {
-                    'name': 'opis',
+                    'name': 'description',
                     'value': 'Opis co się dzieje w danym kroku'
                 },
             ]
         """
         available_things = [
             'timer',
-            'opis'
+            'description'
         ]
         new_content_additional = []
         if self.content_additional != '':
