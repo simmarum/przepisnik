@@ -110,10 +110,10 @@ class Product(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        context['relative_url'] = urllib.parse.urlparse(
+        context['my_relative_url'] = urllib.parse.urlparse(
             self.get_full_url()).path
         print(self.get_full_url())
-        print(context['relative_url'])
+        print(context['my_relative_url'])
         return context
 
 
