@@ -39,7 +39,6 @@ class HomePage(Page):
 
 
 class Product(Page):
-    sku = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     short_description = models.TextField(blank=True, null=False)
     image = models.ForeignKey(
@@ -55,7 +54,6 @@ class Product(Page):
     content_additional = models.TextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('sku'),
         FieldPanel('category'),
         FieldPanel('difficult_level'),
         ImageChooserPanel('image'),
