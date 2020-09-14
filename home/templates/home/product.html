@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 {% load i18n %}
-
+{% load widget_tweaks %}
+{% load comments %}
 
 {% block content %}
 <div class="container grid-lg">
@@ -69,39 +70,61 @@
                 {% endfor %}
             </div>
             </p>
+            <p>
+                <span class="sect_bold">{% trans "Comments" %}:</span>
+                {% get_comment_form for page as form %}
+            <div class="columns">
+                <form action="{% comment_form_target %}" method="POST">
+                    {% csrf_token %}
+                    <p class="columns">
+                        <label class="column col-4" for="{{form.name.id_for_label}}">{% trans "Username" %}</label>
+                        {{ form.name|attr:"class:'column col-6'" }}
+                    </p>
+                    <p class="columns">
+                        <label class="column col-4" for="{{form.comment.id_for_label}}">{{form.comment.label}}</label>
+                        {{ form.comment|attr:"rows:3"|attr:"cols:40"|attr:"class:'column col-8'" }}
+                    </p>
+                    {{ form.honeypot }}
+                    {{ form.content_type }}
+                    {{ form.object_pk }}
+                    {{ form.timestamp }}
+                    {{ form.security_hash }}
+                    <input type="hidden" name="email" value="anonymised@przepisnik.com" />
+                    <input type="hidden" name="next" value="{{request.path}}" />
+                    <input type="submit" value='{%trans "Add comment" %}' id="id_submit" />
+                </form>
+            </div>
+            </p>
+            <p>
+                {% get_comment_list for page as comment_list %}
+            <div>
+                {% for comment in comment_list %}
+                <span class="text_bold">{{comment.user_name}}</span> <span>({{comment.submit_date}})</span>
+                <p>
+                    {{comment.comment}}
+                </p>
+                {% endfor %}
+            </div>
+            </p>
         </div>
     </div>
 </div>
 <script>
     window.onload = function () {
         var timers_count = {}
-        var timers = document.getElementsByClassName('timer');
-        for (var i = 0; i < timers.length; i++) {
-            timer = timers.item(i)
-            tmp_btn_id = "btn_".concat(timer.id)
-            btn_timer = document.getElementById(tmp_btn_id);
-            format = function (minutes, seconds, id_of_span) {
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+        var timers = document.getElementsByClassName(' timer'); for (var i = 0; i < timers.length; i++) {
+            timer = timers.item(i) tmp_btn_id = "btn_".concat(timer.id)
+            btn_timer = document.getElementById(tmp_btn_id); format = function (minutes, seconds, id_of_span) {
+                minutes = minutes < 10 ? "0" + minutes : minutes; seconds = seconds < 10 ? "0" + seconds : seconds;
                 _timer = document.getElementById(id_of_span)
-                _btn_timer = document.getElementById("btn_".concat(_timer.id));
-                _timer.textContent = minutes + ':' + seconds;
-                if (this.running == true) {
-                    _timer.classList.add('timer_run');
-                    _btn_timer.disabled = true;
-                } else {
-                    _timer.classList.remove('timer_run');
-                    _btn_timer.disabled = false;
-                }
-            };
-            count_timer = new CountDownTimer(timer.getAttribute('value'), 1000, timer.id);
-            count_timer.onTick(format);
-
-            btn_timer.onclick = function () {
-                timers_count[this.id].start()
-            };
+                _btn_timer = document.getElementById("btn_".concat(_timer.id)); _timer.textContent = minutes + ':' +
+                    seconds; if (this.running == true) {
+                        _timer.classList.add('timer_run'); _btn_timer.disabled = true;
+                    } else { _timer.classList.remove('timer_run'); _btn_timer.disabled = false; }
+            }; count_timer = new
+                CountDownTimer(timer.getAttribute('value'), 1000, timer.id); count_timer.onTick(format);
+            btn_timer.onclick = function () { timers_count[this.id].start() };
             timers_count[tmp_btn_id] = count_timer
         }
-    };
-</script>
+    }; </script>
 {% endblock %}

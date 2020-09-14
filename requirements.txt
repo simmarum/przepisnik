@@ -4,12 +4,14 @@ beautifulsoup4==4.8.2
 certifi==2020.4.5.1
 chardet==3.0.4
 Django==3.1
+django-contrib-comments==1.9.2
 django-crispy-forms==1.9.2
 django-filter==2.3.0
 django-modelcluster==5.0.2
 django-modeltranslation==0.15.2
 django-taggit==1.2.0
 django-treebeard==4.3.1
+django-widget-tweaks==1.4.8
 djangorestframework==3.11.1
 draftjs-exporter==2.1.7
 et-xmlfile==1.0.1

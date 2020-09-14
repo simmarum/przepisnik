@@ -51,8 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'widget_tweaks',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'wagtail.contrib.settings',
+    'django_comments',
     'crispy_forms',
 
 ]
@@ -174,6 +177,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+SITE_ID = 1
 
 # Wagtail settings
 

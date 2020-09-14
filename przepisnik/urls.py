@@ -29,8 +29,9 @@ urlpatterns = [
 
     *i18n_patterns(url(r'^contact/', views.contact,  name='contact_us')),
     url(r'^rate/', views.rate_product,  name='rate_product'),
+    url(r'^comments/', include('django_comments.urls')),
 
-    *i18n_patterns(
+    * i18n_patterns(
         url('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     )
 
