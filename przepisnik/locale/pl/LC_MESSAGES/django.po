@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-02 17:57+0000\n"
+"POT-Creation-Date: 2020-09-15 18:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,11 +32,11 @@ msgstr "Twój email:"
 msgid "What do you want to say?"
 msgstr "Co chciałbyś nam powiedzieć?"
 
-#: przepisnik/settings/base.py:136
+#: przepisnik/settings/base.py:143
 msgid "English"
 msgstr "Angielski"
 
-#: przepisnik/settings/base.py:137
+#: przepisnik/settings/base.py:144
 msgid "Polish"
 msgstr "Polski"
 
@@ -58,11 +58,11 @@ msgstr ""
 "Przepraszam, wygląda na to że napotkałeś błąd. Proszę spróbuj ponownie "
 "wkrótce"
 
-#: przepisnik/templates/base.html:48
+#: przepisnik/templates/base.html:49
 msgid "Recipes"
 msgstr "Przepisy"
 
-#: przepisnik/templates/base.html:51 przepisnik/templates/contact.html:4
+#: przepisnik/templates/base.html:52 przepisnik/templates/contact.html:4
 #: przepisnik/templates/contact.html:10
 msgid "Contact"
 msgstr "Kontakt"

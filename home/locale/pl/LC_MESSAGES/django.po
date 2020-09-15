@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-02 17:57+0000\n"
+"POT-Creation-Date: 2020-09-15 18:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,41 +34,53 @@ msgstr "Szukaj po tytule i kategorii"
 msgid "Search"
 msgstr "Szukaj"
 
-#: home/templates/home/home_page.html:53 home/templates/home/product.html:21
+#: home/templates/home/home_page.html:55 home/templates/home/product.html:22
 msgid "Difficulty level:"
 msgstr "Poziom trudności:"
 
-#: home/templates/home/product.html:18
+#: home/templates/home/product.html:19
 msgid "Category"
 msgstr "Kategoria"
 
-#: home/templates/home/product.html:34
+#: home/templates/home/product.html:35
 msgid "Ingredients"
 msgstr "Składniki"
 
-#: home/templates/home/product.html:42
+#: home/templates/home/product.html:43
 msgid "Recipe"
 msgstr "Przepis"
 
-#: home/templates/home/product.html:46
+#: home/templates/home/product.html:47
 msgid "Step by step"
 msgstr "Krok po kroku"
 
-#: home/templates/home/product.html:50
+#: home/templates/home/product.html:51
 msgid "Timer"
 msgstr "Minutnik"
 
-#: home/templates/home/product.html:50
+#: home/templates/home/product.html:51
 msgid "seconds"
 msgstr "sekund"
 
-#: home/templates/home/product.html:63
+#: home/templates/home/product.html:64
 msgid "Rate product"
 msgstr "Oceń product"
 
-#: home/templates/home/product.html:65
+#: home/templates/home/product.html:66
 msgid "Rate difficulty level:"
 msgstr "Oceń poziom trudności:"
+
+#: home/templates/home/product.html:74
+msgid "Comments"
+msgstr "Komentarze"
+
+#: home/templates/home/product.html:80
+msgid "Username"
+msgstr "Pseudonim"
+
+#: home/templates/home/product.html:94
+msgid "Add comment"
+msgstr "Dodaj komentarz"
 
 #: home/templates/home/welcome_page.html:8
 msgid "Visit the Wagtail website"
