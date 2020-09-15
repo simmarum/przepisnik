@@ -111,20 +111,30 @@
 </div>
 <script>
     window.onload = function () {
-        var timers_count = {}
-        var timers = document.getElementsByClassName(' timer'); for (var i = 0; i < timers.length; i++) {
-            timer = timers.item(i) tmp_btn_id = "btn_".concat(timer.id)
-            btn_timer = document.getElementById(tmp_btn_id); format = function (minutes, seconds, id_of_span) {
-                minutes = minutes < 10 ? "0" + minutes : minutes; seconds = seconds < 10 ? "0" + seconds : seconds;
-                _timer = document.getElementById(id_of_span)
-                _btn_timer = document.getElementById("btn_".concat(_timer.id)); _timer.textContent = minutes + ':' +
-                    seconds; if (this.running == true) {
-                        _timer.classList.add('timer_run'); _btn_timer.disabled = true;
-                    } else { _timer.classList.remove('timer_run'); _btn_timer.disabled = false; }
-            }; count_timer = new
-                CountDownTimer(timer.getAttribute('value'), 1000, timer.id); count_timer.onTick(format);
+        var timers_count = {};
+        var timers = document.getElementsByClassName('timer');
+        for (var i = 0; i < timers.length; i++) {
+            timer = timers.item(i);
+            tmp_btn_id = "btn_".concat(timer.id);
+            btn_timer = document.getElementById(tmp_btn_id);
+            format = function (minutes, seconds, id_of_span) {
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                _timer = document.getElementById(id_of_span);
+                _btn_timer = document.getElementById("btn_".concat(_timer.id));
+                _timer.textContent = minutes + ':' + seconds;
+                if (this.running == true) {
+                    _timer.classList.add('timer_run');
+                    _btn_timer.disabled = true;
+                } else {
+                    _timer.classList.remove('timer_run');
+                    _btn_timer.disabled = false;
+                }
+            };
+            count_timer = new CountDownTimer(timer.getAttribute('value'), 1000, timer.id);
+            count_timer.onTick(format);
             btn_timer.onclick = function () { timers_count[this.id].start() };
-            timers_count[tmp_btn_id] = count_timer
-        }
+            timers_count[tmp_btn_id] = count_timer;
+        };
     }; </script>
 {% endblock %}
