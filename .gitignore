@@ -1,4 +1,5 @@
 private.txt
-
+.env.sh
+.env_dev.sh
 /venv
 .vscode

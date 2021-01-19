@@ -1,5 +1,8 @@
 from typing import Any, Dict, Optional
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 from django import template, urls
 from django.conf import settings
 from django.conf.urls import include, url
@@ -42,7 +45,7 @@ urlpatterns = [
 ]
 
 
-if settings.DEBUG:
+if settings.DEBUG or True:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
