@@ -11,6 +11,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.urls import path
 from django.views.i18n import JavaScriptCatalog
 
+import debug_toolbar
+
 from search import views as search_views
 
 from . import views
@@ -33,7 +35,9 @@ urlpatterns = [
 
     * i18n_patterns(
         url('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
-    )
+    ),
+
+    path('__debug__/', include(debug_toolbar.urls)),
 
 ]
 
