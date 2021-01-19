@@ -1,10 +1,10 @@
 from .base import *
-
+import os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cn%4-)@f09fgvj@%=ee^5m7)r6m=p1_$)!o8j2w_=w)l_+l%0i'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*']
