@@ -15,12 +15,9 @@ class HomePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
 
-        categories = set()
-        for product in Product.objects.child_of(self).live():
-            categories.add(product.category)
-        categories = list(categories)
-        categories.sort()
-        context['categories'] = categories
+        categories = Product.objects.child_of(
+            self).live().values('category').distinct().order_by("category")
+        context['categories'] = [cat['category'] for cat in categories]
 
         search_query = request.GET.get('query', None)
         if search_query:
@@ -110,8 +107,6 @@ class Product(Page):
         context = super().get_context(request)
         context['my_relative_url'] = urllib.parse.urlparse(
             self.get_full_url()).path
-        print(self.get_full_url())
-        print(context['my_relative_url'])
         return context
 
 
