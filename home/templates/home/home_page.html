@@ -46,7 +46,6 @@
                     <div class="card-title h5">
                         {{ product.title }}
                         {{ product.root_url }}
-
                     </div>
                 </div>
                 <div class="card-body">
@@ -66,7 +65,6 @@
         </div>
         {% if forloop.counter|divisibleby:3 %}
         <div class="w-100 hidden-md-down">
-            <!--force wrap every 5 on lg-->
         </div>
         {% endif %}
         {% endfor %}

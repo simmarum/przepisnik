@@ -28,7 +28,8 @@ class HomePage(Page):
             # Log the query so Wagtail can suggest promoted results
             Query.get(search_query).add_hit()
         else:
-            search_results = Product.objects.child_of(self).live()
+            search_results = Product.objects.child_of(
+                self).live().select_related('image')
 
         context['products'] = search_results
 
