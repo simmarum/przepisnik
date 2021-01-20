@@ -2,6 +2,8 @@ import urllib.parse
 
 from django.db import models
 
+from django.core.paginator import Paginator
+
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -13,14 +15,16 @@ import ast
 
 class HomePage(Page):
     def get_context(self, request):
+        PAGINATION_NUM = 6
         context = super().get_context(request)
 
         categories = Product.objects.child_of(
             self).live().values('category').distinct().order_by("category")
         context['categories'] = [cat['category'] for cat in categories]
-
+        get_req = "?"
         search_query = request.GET.get('query', None)
         if search_query:
+            get_req += f"query={search_query}"
             search_results = Product.objects.child_of(self).live().search(
                 search_query,
                 fields=["title", "category"]
@@ -30,8 +34,23 @@ class HomePage(Page):
         else:
             search_results = Product.objects.child_of(
                 self).live().select_related('image')
+        print("@@@", "typeof search_query", type(search_query))
 
-        context['products'] = search_results
+        paginator = Paginator(search_results, PAGINATION_NUM)
+        page_number = int(request.GET.get('page', 1))
+        page_obj = paginator.get_page(page_number)
+
+        con = "&"
+        if "?query=" not in get_req:
+            con = ""
+        if page_obj.has_next():
+            context['products_next_page'] = get_req + \
+                f"{con}page={page_number+1}"
+        if page_obj.has_previous():
+            context['products_has_previous'] = get_req + \
+                f"{con}page={page_number-1}"
+
+        context['products'] = page_obj
 
         return context
 

@@ -70,4 +70,31 @@
         {% endfor %}
     </div>
 </div>
+<div class="container grid-lg m-2">
+    <div class="columns">
+        <div class="column col-6 col-sm-12">
+            {% if products_has_previous %}
+            <a href="{{ products_has_previous }}" class=" float-right">
+                <i class="fa fa-forward fa-2x" aria-hidden="true"></i>
+            </a>
+            {% else %}
+            <a href="javascript:void(0)" class=" float-right">
+                <i class="fa fa-ban fa-2x" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+        </div>
+        <div class="column col-6 col-sm-12">
+            {% if products_next_page %}
+            <a href="{{ products_next_page }}" class=" float-left">
+                <i class="fa fa-backward fa-2x" aria-hidden="true"></i>
+            </a>
+            {% else %}
+            <a href="javascript:void(0)" class=" float-left">
+                <i class="fa fa-ban fa-2x" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
