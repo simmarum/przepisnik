@@ -23,6 +23,8 @@ class HomePage(Page):
         context['categories'] = [cat['category'] for cat in categories]
         get_req = "?"
         search_query = request.GET.get('query', None)
+        if search_query == "":
+            search_query = None
         if search_query:
             get_req += f"query={search_query}"
             search_results = Product.objects.child_of(self).live().search(
@@ -34,7 +36,7 @@ class HomePage(Page):
         else:
             search_results = Product.objects.child_of(
                 self).live().select_related('image')
-        print("@@@", "typeof search_query", type(search_query))
+        print("@@@", "typeof search_query", type(search_results))
 
         paginator = Paginator(search_results, PAGINATION_NUM)
         page_number = int(request.GET.get('page', 1))
