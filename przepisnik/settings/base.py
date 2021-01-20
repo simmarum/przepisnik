@@ -167,6 +167,18 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
+
+def cache_images_forever(headers, path, url):
+    """Force images to be cached forever"""
+    tokens = path.split(".")
+    if len(tokens) > 1:
+        extension = tokens[-1].lower()
+        if extension in ('png', 'jpg', 'jpeg', 'ico', 'gif'):
+            headers['Cache-Control'] = 'public, max-age=604 800'  # 7 day
+
+
+WHITENOISE_ADD_HEADERS_FUNCTION = cache_images_forever
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
