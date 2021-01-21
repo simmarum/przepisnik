@@ -87,7 +87,7 @@ ROOT_URLCONF = 'przepisnik.urls'
 AWS_STORAGE_BUCKET_NAME = 'przepisnik-study'
 AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.eu-central-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 TEMPLATES = [
     {

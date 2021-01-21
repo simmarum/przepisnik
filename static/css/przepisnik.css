@@ -1,0 +1,28 @@
+.sect_bold {
+    font-weight: bold;
+    font-size: x-large;
+}
+.text_bold {
+    font-weight: bold;
+}
+/* The heart of the matter */
+.category_no_wrap {
+    white-space: nowrap;
+}
+
+.checked {
+    color: #504eb8;
+}
+
+
+#rate_star:hover > span:before {
+    color: #504eb8;
+}
+
+#rate_star > span:hover ~ span:before {
+    color: #ffffff;
+}
+
+#id_honeypot {
+    display: none;
+}
